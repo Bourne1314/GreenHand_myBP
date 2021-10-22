@@ -25,14 +25,6 @@ public class GreenHandController {
     @RequestMapping(value="/addGreenHand",method = RequestMethod.POST)
     public Boolean addGreenHand(@RequestBody GreenHand greenHand){
         System.out.println("--------------菜鸟表insert-------------");
-        greenHand.setId(greenHand.getId());
-        greenHand.setAge(greenHand.getAge());
-        greenHand.setName(greenHand.getName());
-        greenHand.setCity(greenHand.getCity());
-        greenHand.setEducation(greenHand.getEducation());
-        greenHand.setTel(greenHand.getTel());
-        greenHand.setCodeLanguage(greenHand.getCodeLanguage());
-        System.out.println(greenHand);
         Boolean isSuccess = greenHandService.save(greenHand);
         return isSuccess;
     }
