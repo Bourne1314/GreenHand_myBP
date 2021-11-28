@@ -3,9 +3,9 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/greenhand?useUnicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: 123456
-#  cloud:
-#    nacos:
-#      discovery:
-#        server-addr: localhost:8848
-#        namespace: c7efda37-a9ec-4155-b31e-ead5d19fd5b2
-#        ip: 192.168.20.136
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+  application:
+    name: myBatis-Plus
