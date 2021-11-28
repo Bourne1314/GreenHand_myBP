@@ -22,6 +22,13 @@ public class GreenHandController {
         return greenHands;
     }
 
+    @RequestMapping(value="/getGreenHandBySql",method = RequestMethod.GET)
+    public GreenHand listBySql(@RequestParam Integer age){
+        System.out.println("--------------菜鸟表list-------------");
+        GreenHand greenHand = greenHandService.greenHandSql(age);
+        return greenHand;
+    }
+
     @RequestMapping(value="/addGreenHand",method = RequestMethod.POST)
     public Boolean addGreenHand(@RequestBody GreenHand greenHand){
         System.out.println("--------------菜鸟表insert-------------");
