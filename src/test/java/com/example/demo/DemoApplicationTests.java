@@ -1,9 +1,8 @@
 package com.example.demo;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.demo.DAO.GreenHand;
 import com.example.demo.Mapper.GreenHandMapper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
