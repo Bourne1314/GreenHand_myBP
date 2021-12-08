@@ -26,7 +26,6 @@ import java.math.BigDecimal;
 /**
  * @author IT云清
  */
-@Mapper
 @FeignClient(value = "account-server")
 public interface AccountApi {
 

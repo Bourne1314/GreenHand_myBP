@@ -1,32 +1,30 @@
 package com.example.demo.Service.Impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.demo.Entity.Order;
-import com.example.demo.Mapper.AccountApi;
+import com.example.demo.Entity.RedHand;
 import com.example.demo.Mapper.OrderMapper;
-import com.example.demo.Mapper.StockApi;
 import com.example.demo.Service.OrderService;
-import com.netflix.discovery.converters.Auto;
+import com.example.demo.feign.AccountApi;
+import com.example.demo.feign.StockApi;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.math.BigDecimal;
 
 @Service("OrderService")
-public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
+public class OrderServiceImpl extends ServiceImpl<OrderMapper, RedHand> implements OrderService {
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderServiceImpl.class);
 
     @Autowired
     private OrderService orderService;
-    @Autowired
+    @Resource
     private StockApi stockApi;
-    @Autowired
+    @Resource
     private AccountApi accountApi;
-    @Autowired
-    OrderMapper orderMapper;
 
     /**
      * 创建订单
@@ -38,24 +36,20 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
      */
     @Override
     @GlobalTransactional(name = "fsp-create-order", rollbackFor = Exception.class)
-    public void create(Order order) {
+    public void create(RedHand redHand) {
         LOGGER.info("------->交易开始");
         //本地方法
 //        orderMapper.createOrder(order);
-        System.out.println(order);
-        orderService.save(order);
-
+        System.out.println(redHand);
+        orderService.save(redHand);
         LOGGER.info("订单处理完毕。");
         //远程方法 扣减库存
-        stockApi.decrease(order.getProductId(), order.getCount());
-
+        stockApi.decrease(redHand.getProductId(), redHand.getCount());
         //远程方法 扣减账户余额
-
-        LOGGER.info("------->扣减账户开始order中");
-        accountApi.decrease(order.getUserId(), order.getMoney());
-        LOGGER.info("------->扣减账户结束order中");
-
-        LOGGER.info("------->交易结束");
+//        LOGGER.info("------->扣减账户开始order中");
+//        accountApi.decrease(redHand.getUserId(), redHand.getMoney());
+//        LOGGER.info("------->扣减账户结束order中");
+//        LOGGER.info("------->交易结束");
     }
 
     /**

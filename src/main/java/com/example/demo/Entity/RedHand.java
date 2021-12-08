@@ -13,29 +13,33 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.example.demo.Mapper;
+package com.example.demo.Entity;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import lombok.Data;
 
 import java.math.BigDecimal;
 
 /**
+ * 订单
+ *
  * @author IT云清
  */
-@Mapper
-@FeignClient(value = "account-server")
-public interface AccountApi {
+@Data
+public class RedHand {
+
+    private Long id;
+
+    private Long userId;
+
+    private Long productId;
+
+    private Integer count;
+
+    private BigDecimal money;
 
     /**
-     * 扣减账户余额
-     *
-     * @param userId 用户id
-     * @param money  金额
-     * @return
+     * 订单状态：0：创建中；1：已完结
      */
-    @RequestMapping("/account/decrease")
-    String decrease(@RequestParam("userId") Long userId, @RequestParam("money") BigDecimal money);
+    private Integer status;
+
 }

@@ -24,8 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * @author IT云清
  */
-@Mapper
-@FeignClient(value = "stock-server")
+@FeignClient(name = "zzjstock-server",url = "http://192.168.20.136:8182/")
 public interface StockApi {
 
     /**
@@ -35,6 +34,6 @@ public interface StockApi {
      * @param count
      * @return
      */
-    @GetMapping(value = "/stock/decrease")
+    @GetMapping(value = "stock/decrease")
     String decrease(@RequestParam("productId") Long productId, @RequestParam("count") Integer count);
 }

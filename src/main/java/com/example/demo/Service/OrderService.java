@@ -1,11 +1,11 @@
 package com.example.demo.Service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.demo.Entity.Order;
+import com.example.demo.Entity.RedHand;
 
 import java.math.BigDecimal;
 
-public interface OrderService extends IService<Order> {
+public interface OrderService extends IService<RedHand> {
 
     /**
      * 创建订单
@@ -13,7 +13,7 @@ public interface OrderService extends IService<Order> {
      * @param order
      * @return
      */
-    void create(Order order);
+    void create(RedHand redHand);
 
     /**
      * 修改订单状态

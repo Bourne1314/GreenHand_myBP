@@ -32,6 +32,11 @@
             <version>3.1.2</version>
         </dependency>
         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+            <version>2.1.0.RELEASE</version>
+        </dependency>
+        <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-annotation</artifactId>
             <version>3.1.2</version>
@@ -54,6 +59,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.csicit.thirdparty</groupId>
+            <artifactId>com.dm.driver</artifactId>
+            <version>7.0.1</version>
+        </dependency>
+        <dependency>
             <groupId>io.seata</groupId>
             <artifactId>seata-all</artifactId>
             <version>1.4.2</version>
@@ -62,7 +72,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
-            <version>8.0.21</version>
+            <version>5.1.40</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

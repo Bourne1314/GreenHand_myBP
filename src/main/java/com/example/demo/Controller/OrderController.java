@@ -15,47 +15,59 @@
  */
 package com.example.demo.Controller;
 
-import com.example.demo.Entity.Order;
+import com.example.demo.Entity.RedHand;
 import com.example.demo.Service.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author IT云清
  */
 @RestController
-@RequestMapping(value = "order")
+@RequestMapping("order")
 public class OrderController {
 
-    @Autowired
+    @Resource
     private OrderService orderService;
 
+    /**
+     * 创建订单
+     *
+     * @param redHand
+     * @return
+     */
+    @GetMapping("create")
+    public String create(RedHand redHand) {
+        System.out.println("123");
+        orderService.create(redHand);
+        return "Create order success";
+    }
     /**
      * 创建订单
      *
      * @param order
      * @return
      */
-    @GetMapping("create")
-    public String create(Order order) {
-        orderService.create(order);
-        return "Create order success";
+    @RequestMapping("getcreate")
+    public List<RedHand> getcreate() {
+        return orderService.list();
+
     }
 
-    /**
-     * 修改订单状态
-     *
-     * @param userId
-     * @param money
-     * @param status
-     * @return
-     */
-    @RequestMapping("update")
-    String update(@RequestParam("userId") Long userId, @RequestParam("money") BigDecimal money,
-                  @RequestParam("status") Integer status) {
-        orderService.update(userId, money, status);
-        return "订单状态修改成功";
-    }
+//    /**
+//     * 修改订单状态
+//     *
+//     * @param userId
+//     * @param money
+//     * @param status
+//     * @return
+//     */
+//    @RequestMapping("update")
+//    String update(@RequestParam("userId") Long userId, @RequestParam("money") BigDecimal money,
+//                  @RequestParam("status") Integer status) {
+//        orderService.update(userId, money, status);
+//        return "订单状态修改成功";
+//    }
 }
