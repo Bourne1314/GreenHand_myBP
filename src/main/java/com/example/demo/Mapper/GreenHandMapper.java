@@ -2,7 +2,7 @@ package com.example.demo.Mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.example.demo.DAO.GreenHand;
+import com.example.demo.Entity.GreenHand;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 

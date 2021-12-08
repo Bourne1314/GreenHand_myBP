@@ -3,16 +3,17 @@ package com.example.demo.Controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.example.demo.DAO.GreenHand;
+import com.example.demo.Entity.GreenHand;
 import com.example.demo.Service.GreenHandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
 public class GreenHandController {
-    @Autowired
+    @Resource
     GreenHandService greenHandService;
 
     @RequestMapping(value="/getGreenHand",method = RequestMethod.GET)
