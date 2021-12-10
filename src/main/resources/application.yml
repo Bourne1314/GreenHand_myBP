@@ -73,6 +73,6 @@ spring:
     driver-class-name: dm.jdbc.driver.DmDriver
     type: com.alibaba.druid.pool.DruidDataSource
     password: jarisoft11
-    url: jdbc:dm://localhost:5236/ORDER_TBL?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    url: jdbc:dm://localhost:5236/SYSDBA?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
     username: SYSDBA
 

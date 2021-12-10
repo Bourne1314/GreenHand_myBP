@@ -38,13 +38,13 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, RedHand> implemen
     @GlobalTransactional(name = "fsp-create-order", rollbackFor = Exception.class)
     public void create(RedHand redHand) {
         LOGGER.info("------->交易开始");
-        //本地方法
-//        orderMapper.createOrder(order);
-        System.out.println(redHand);
-        orderService.save(redHand);
-        LOGGER.info("订单处理完毕。");
-        //远程方法 扣减库存
-        stockApi.decrease(redHand.getProductId(), redHand.getCount());
+//        //本地方法
+////        orderMapper.createOrder(order);
+//        System.out.println(redHand);
+//        orderService.save(redHand);
+//        LOGGER.info("订单处理完毕。");
+//        //远程方法 扣减库存
+//        stockApi.decrease(redHand.getProductId(), redHand.getCount());
         //远程方法 扣减账户余额
 //        LOGGER.info("------->扣减账户开始order中");
 //        accountApi.decrease(redHand.getUserId(), redHand.getMoney());

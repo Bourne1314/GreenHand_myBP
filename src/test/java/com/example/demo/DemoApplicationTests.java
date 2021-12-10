@@ -30,9 +30,7 @@ class DemoApplicationTests {
         greenHand.setAge(7);
         greenHand.setName("神秘的菜鸟");
         greenHand.setCity("江苏连云港");
-        greenHand.setEducation("大学本科");
         greenHand.setTel("18969255555");
-        greenHand.setCodeLanguage("c#");
         System.out.println(greenHand);
         greenHandMapper.insert(greenHand);
     }

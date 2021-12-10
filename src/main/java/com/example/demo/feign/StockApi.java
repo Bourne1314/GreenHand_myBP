@@ -15,16 +15,20 @@
  */
 package com.example.demo.feign;
 
+import com.example.demo.Entity.GreenHand;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * @author IT云清
  */
-@FeignClient(name = "zzjstock-server",url = "http://192.168.20.136:8182/")
+@FeignClient(name = "zzjstock-server2",url = "http://192.168.20.136:8182/")
 public interface StockApi {
 
     /**
@@ -34,6 +38,6 @@ public interface StockApi {
      * @param count
      * @return
      */
-    @GetMapping(value = "stock/decrease")
-    String decrease(@RequestParam("productId") Long productId, @RequestParam("count") Integer count);
+    @PostMapping(value = "getGreenHandBySql")
+    GreenHand getGreenHand(@RequestParam Integer age);
 }

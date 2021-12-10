@@ -8,7 +8,5 @@ public class GreenHand {
     private String Name;
     private String City;
     private Integer Age;
-    private String Education;
     private String Tel;
-    private String CodeLanguage;
 }
