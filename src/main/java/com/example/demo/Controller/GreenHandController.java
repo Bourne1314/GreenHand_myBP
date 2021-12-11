@@ -8,7 +8,10 @@ import com.example.demo.Service.GreenHandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class GreenHandController {
@@ -26,6 +29,12 @@ public class GreenHandController {
     public GreenHand listBySql(@RequestParam Integer age){
         System.out.println("--------------菜鸟表list-------------");
         GreenHand greenHand = greenHandService.greenHandSql(age);
+        String ids = greenHand.getCity();
+        String ids1 = ids.replaceAll(" ","");
+        String demosub = ids1.substring(1,ids1.length()-1);
+        String demoArray[] = demosub.split(",");
+        List<String> demoList = Arrays.asList(demoArray);
+        System.out.println(demoList);
         return greenHand;
     }
 
