@@ -3,28 +3,33 @@ package com.example.demo.Controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.example.demo.DAO.GreenHand;
+import com.example.demo.Entity.GreenHand;
 import com.example.demo.Service.GreenHandService;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.seata.core.context.RootContext;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
 public class GreenHandController {
-    @Autowired
+    @Resource
     GreenHandService greenHandService;
 
-    @RequestMapping(value="/getGreenHand",method = RequestMethod.GET)
-    public List<GreenHand> list(){
-        System.out.println("--------------菜鸟表list-------------");
-        List<GreenHand> greenHands = greenHandService.list();
-        return greenHands;
-    }
+//    @RequestMapping(value="/getGreenHand",method = RequestMethod.GET)
+//    public List<GreenHand> list(Integer age){
+//        System.out.println(age);
+//        System.out.println("--------------菜鸟表list-------------");
+////        List<GreenHand> greenHands = greenHandService.greenHandSql();
+//        System.out.println(greenHands);
+//        return greenHands;
+//    }
 
-    @RequestMapping(value="/getGreenHandBySql",method = RequestMethod.GET)
+    @RequestMapping(value="/getGreenHandBySql",method = RequestMethod.POST)
     public GreenHand listBySql(@RequestParam Integer age){
         System.out.println("--------------菜鸟表list-------------");
+        System.out.println(RootContext.getXID());
+        System.out.println("------------xxiud");
         GreenHand greenHand = greenHandService.greenHandSql(age);
         return greenHand;
     }
@@ -32,6 +37,7 @@ public class GreenHandController {
     @RequestMapping(value="/addGreenHand",method = RequestMethod.POST)
     public Boolean addGreenHand(@RequestBody GreenHand greenHand){
         System.out.println("--------------菜鸟表insert-------------");
+
         Boolean isSuccess = greenHandService.save(greenHand);
         return isSuccess;
     }

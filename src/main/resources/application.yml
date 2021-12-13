@@ -1,11 +1,78 @@
+#spring:
+#  datasource:
+#    url: jdbc:mysql://127.0.0.1:3306/greenhand?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+#    username: root
+#    password: 123456
+#  cloud:
+#    nacos:
+#      config:
+#        server-addr: localhost:8848
+#  application:
+#    name: myBatis-Plus
+
+#eureka:
+#  instance:
+#    hostname: localhost
+#    prefer-ip-address: true
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+#feign:
+#  hystrix:
+#    enabled: false
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 60000
+#        readTimeout: 60000
+#logging:
+#  level:
+#    io:
+#      seata: info
+##mybatis:
+##  mapperLocations: classpath:mapper/*.xml
+##  typeAliasesPackage: com.example.demo.DAO
+#server:
+#  port: 8180
+#spring:
+#  application:
+#    name: zzjorder-server
+#  cloud:
+#    alibaba:
+#      seata:
+#        tx-service-group: my_test_tx_group
+#  datasource:
+#    password: 123456
+#    url: jdbc:mysql://localhost:3306/seataorder?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+#    username: root
+feign:
+  hystrix:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 60000
+        readTimeout: 60000
+logging:
+  level:
+    io:
+      seata: info
+#mybatis:
+#  mapperLocations: classpath:mapper/*.xml
+#  typeAliasesPackage: com.example.demo.DAO
+server:
+  port: 8182
 spring:
-  datasource:
-    url: jdbc:mysql://127.0.0.1:3306/greenhand?useUnicode=true&characterEncoding=UTF-8&useSSL=false
-    username: root
-    password: 123456
-  cloud:
-    nacos:
-      config:
-        server-addr: localhost:8848
   application:
-    name: myBatis-Plus
+    name: zzjorder-server2
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
+  datasource:
+    driver-class-name: dm.jdbc.driver.DmDriver
+    type: com.alibaba.druid.pool.DruidDataSource
+    password: jarisoft11
+    url: jdbc:dm://localhost:5236/GREEN?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    username: SYSDBA
+
