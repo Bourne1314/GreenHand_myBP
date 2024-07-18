@@ -1,5 +1,6 @@
 package com.example.demo.Service.Impl;
 
+
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.demo.DAO.Ecs;
 import com.example.demo.Mapper.EcsMapper;
@@ -13,9 +14,5 @@ public class EcsServiceImpl extends ServiceImpl<EcsMapper, Ecs> implements EcsSe
     @Resource
     EcsMapper ecsMapper;
 
-    @Override
-    public Float getBySpe(Integer coreNumber,Integer memNumber,Integer yearNumber){
-        Float price  =  ecsMapper.getBySpe(coreNumber,memNumber,yearNumber);
-        return price;
-}
+
 }

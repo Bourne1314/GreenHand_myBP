@@ -5,6 +5,6 @@ import com.example.demo.DAO.Ecs;
 
 public interface EcsService extends IService<Ecs> {
 
-    Float getBySpe(Integer coreNumber,Integer memNumber,Integer yearNumber);
+//    Float getBySpe(Integer coreNumber,Integer memNumber,Integer yearNumber);
 
 }

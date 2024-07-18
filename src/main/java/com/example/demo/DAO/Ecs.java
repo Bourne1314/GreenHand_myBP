@@ -6,10 +6,13 @@ import lombok.Data;
 public class Ecs {
     private Integer Id;
     private String type;
-    private Integer CoreNumber;
-    private Integer MemNumber;
-    private Integer DiskNumber;
-    private Float PriceNumber;
-    private String Notes;
-    private Integer YearNumber;
+    private Integer coreNumber;
+    private Integer memNumber;
+    private String notes;
+    private float threeAlpha;
+    private float threeBeta;
+    private float twoAlpha;
+    private float twoBeta;
+    private float oneAlpha;
+    private float oneBeta;
 }

@@ -17,10 +17,10 @@ public class EcsController {
     @Autowired
     EcsService ecsService;
 
-    @RequestMapping(value="/getEcsPrice",method = RequestMethod.GET)
-    public R getEcsPrice(@RequestParam("coreNumber") Integer coreNumber, @RequestParam("memNumber") Integer memNumber, @RequestParam("yearNumber") Integer yearNumber){
-        Float ecs = ecsService.getBySpe(coreNumber,memNumber,yearNumber);
-        R r = new R();
-        return r.put("price",ecs);
-    }
+//    @RequestMapping(value="/getEcsPrice",method = RequestMethod.GET)
+//    public R getEcsPrice(@RequestParam("coreNumber") Integer coreNumber, @RequestParam("memNumber") Integer memNumber, @RequestParam("yearNumber") Integer yearNumber){
+//        Float ecs = ecsService.getBySpe(coreNumber,memNumber,yearNumber);
+//        R r = new R();
+//        return r.put("price",ecs);
+//    }
 }

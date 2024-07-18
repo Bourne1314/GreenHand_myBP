@@ -1,6 +1,7 @@
 package com.example.demo.Service.Impl;
 import com.example.demo.DAO.Ecs;
 import com.example.demo.Mapper.EcsMapper;
+import com.example.demo.Service.EcsService;
 import com.example.demo.Service.ImportExcelService;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -9,6 +10,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +27,9 @@ public class ImportExcelServiceImpl implements ImportExcelService {
 
     @Autowired
     private EcsMapper ecsMapper;
+
+    @Autowired
+    EcsService ecsService;
 
     /**
      * 首先判断文件扩展名
@@ -80,51 +85,65 @@ public class ImportExcelServiceImpl implements ImportExcelService {
              * int CELL_TYPE_BOOLEAN = 4;
              * int CELL_TYPE_ERROR = 5;
              */
-            if( row.getCell(0).getCellType() !=1){
-                throw new Exception("导入失败(第"+(r+1)+"行,姓名请设为文本格式)");
-            }
-            String coreNumber = row.getCell(0).getStringCellValue();
-
-            if(coreNumber == null || coreNumber.isEmpty()){
-                throw new Exception("导入失败(第"+(r+1)+"行,姓名未填写)");
-            }
-
-            row.getCell(1).setCellType(Cell.CELL_TYPE_STRING);
-            String memNumber = row.getCell(1).getStringCellValue();
-            if(memNumber==null || memNumber.isEmpty()){
-                throw new Exception("导入失败(第"+(r+1)+"行,电话未填写)");
-            }
-            String yearNumber = row.getCell(2).getStringCellValue();
-            if(yearNumber==null){
-                throw new Exception("导入失败(第"+(r+1)+"行,不存在此单位或单位未填写)");
-            }
-
-//            Date date;
-//            if(row.getCell(3).getCellType() !=0){
-//                throw new Exception("导入失败(第"+(r+1)+"行,入职日期格式不正确或未填写)");
-//            }else{
-//                date = row.getCell(3).getDateCellValue();
+//            if( row.getCell(0).getCellType() !=1){
+//                throw new Exception("导入失败(第"+(r+1)+"行,姓名请设为文本格式)");
 //            }
-
-//            String des = row.getCell(4).getStringCellValue();
-
-            ecs.setCoreNumber(Integer.parseInt(coreNumber));
-            ecs.setMemNumber(Integer.parseInt(memNumber));
-            ecs.setYearNumber(Integer.parseInt(yearNumber));
+            if(row.getCell(0)!=null){
+                row.getCell(0).setCellType(Cell.CELL_TYPE_NUMERIC);
+                ecs.setId((int) row.getCell(0).getNumericCellValue());
+                ecs.setCoreNumber((int) row.getCell(1).getNumericCellValue());
+                ecs.setMemNumber((int) row.getCell(2).getNumericCellValue());
+                ecs.setThreeAlpha((float) row.getCell(3).getNumericCellValue());
+                ecs.setThreeBeta((float) row.getCell(4).getNumericCellValue());
+                ecs.setTwoAlpha((float) row.getCell(5).getNumericCellValue());
+                ecs.setTwoBeta((float) row.getCell(6).getNumericCellValue());
+                ecs.setOneAlpha((float) row.getCell(7).getNumericCellValue());
+                ecs.setOneBeta((float) row.getCell(8).getNumericCellValue());
+            }
+//            String coreNumber = row.getCell(0).getStringCellValue();
+//
+////            if(coreNumber == null || coreNumber.isEmpty()){
+////                throw new Exception("导入失败(第"+(r+1)+"行,姓名未填写)");
+////            }
+//
+//            row.getCell(1).setCellType(Cell.CELL_TYPE_STRING);
+//            String memNumber = row.getCell(1).getStringCellValue();
+//            if(memNumber==null || memNumber.isEmpty()){
+//                throw new Exception("导入失败(第"+(r+1)+"行,电话未填写)");
+//            }
+//            String yearNumber = row.getCell(2).getStringCellValue();
+//            if(yearNumber==null){
+//                throw new Exception("导入失败(第"+(r+1)+"行,不存在此单位或单位未填写)");
+//            }
+//
+////            Date date;
+////            if(row.getCell(3).getCellType() !=0){
+////                throw new Exception("导入失败(第"+(r+1)+"行,入职日期格式不正确或未填写)");
+////            }else{
+////                date = row.getCell(3).getDateCellValue();
+////            }
+//
+////            String des = row.getCell(4).getStringCellValue();
+//
+//            ecs.setCoreNumber(Integer.parseInt(coreNumber));
+//            ecs.setMemNumber(Integer.parseInt(memNumber));
+//            ecs.setYearNumber(Integer.parseInt(yearNumber));
 
             ecsList.add(ecs);
         }
         for (Ecs ecs1 : ecsList) {
             //首先判断该姓名是否已经存在
             Integer id = ecs1.getId();
-            Integer id1 = ecsMapper.selectById(id).getId();
-            if (id1 == 0) {
+            System.out.println(ecs1);
+            System.out.println(id);
+            System.out.println(ecsMapper.selectById(id));
+            if (ecsMapper.selectById(id) == null) {
                 //不存在即插入
-                ecsMapper.addEcs(ecs1);
+                ecsService.save(ecs1);
                 System.out.println(" 插入 "+ecs1);
             } else {
                 //存在即更新
-                ecsMapper.updateEcsById(ecs1);
+                ecsService.updateById(ecs1);
                 System.out.println(" 更新 "+ecs1);
             }
         }
