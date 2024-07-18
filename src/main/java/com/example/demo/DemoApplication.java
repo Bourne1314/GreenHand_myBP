@@ -15,6 +15,7 @@ public class DemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
         System.out.println("这是我的demo初始化项目！");
+
         //test
     }
 }

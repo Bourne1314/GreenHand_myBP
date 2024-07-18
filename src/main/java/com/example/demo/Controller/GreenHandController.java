@@ -5,11 +5,14 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.demo.DAO.GreenHand;
 import com.example.demo.Service.GreenHandService;
+import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +24,7 @@ public class GreenHandController {
     @RequestMapping(value="/getGreenHand",method = RequestMethod.GET)
     public List<GreenHand> list(){
         System.out.println("--------------菜鸟表list-------------");
+        System.out.println(new Date());
         List<GreenHand> greenHands = greenHandService.list();
         return greenHands;
     }
