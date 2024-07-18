@@ -11,4 +11,5 @@ public class Ecs {
     private Integer DiskNumber;
     private Float PriceNumber;
     private String Notes;
+    private Integer YearNumber;
 }
